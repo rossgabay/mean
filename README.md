@@ -8,13 +8,13 @@
 5. install MongoDB, run ```mongod``` from the ```bin``` directory
 6. Pre-populate some data in the dataAPI collection either using the app (TODO) or from the mongo shell - use objects with ```fname``` and ```lname``` defined, for example ```db.dataApi.insert({ fname: "Saul", lname: "Goodman" })``` 
 
-## Supported Use Cases :
+## Supported Use Cases and example requests :
 1. HTTP GET to retrieve all records from the collection: ```curl http://localhost:8000/api/data```
 2. HTTP GET to retrieve all records filtered by the ```lname``` value : ```curl http://localhost:8000/api/data?lname=Goodman```
 3. HTTP GET to retrieve a record by it's ID : ```curl http://localhost:8000/api/data/56ddec148612d22406d7ee1d```
 
 ##  Config notes:
-1.   
+1.    
 
 
 ##  TODOs :
