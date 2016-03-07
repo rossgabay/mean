@@ -1,4 +1,5 @@
-# Basic MEAN App - Node with Express and MongoDB on the backend, Angular UI. Mongoose for MongoDB access.
+# Basic MEAN App:
+## Node with Express and MongoDB on the backend, Angular UI. Mongoose for MongoDB access.
 ## To run : 
 1. clone the repo
 2. install node
