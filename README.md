@@ -13,10 +13,14 @@
 2. HTTP GET to retrieve all records from the collection: ```curl http://localhost:8000/api/data```
 3. HTTP GET to retrieve all records filtered by the ```lname``` value : ```curl http://localhost:8000/api/data?lname=Goodman```
 4. HTTP GET to retrieve a record by it's ID : ```curl http://localhost:8000/api/data/56ddec148612d22406d7ee1d```
-5. HTTP POST to add a record ```curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 2ccc790c-637f-7f16-a3a1-b8248d4a013e" -d '{
+5. HTTP POST to add a record ```curl -X POST -H "Content-Type: application/json" -d '{
     "fname": "Walter",
     "lname": "White"
   }' "http://localhost:8000/api/data"```
+6. HTTP PUT to update a record: ```curl -X PUT -H "Content-Type: application/json" -d '{
+    "fname": "Jesse",
+    "lname": "Pinkman"
+  }' "http://localhost:8000/api/data/56ddec148612d22406d7ee1d"```
 
 ##  Config notes:
 1.    
