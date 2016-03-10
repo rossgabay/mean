@@ -23,7 +23,7 @@ dataRouter.route('/data')
 			if(err){console.log(err);
 					res.status(500).send(err);
 			} else res.json(fdata);
-	})
+	});
 });
 
 dataRouter.route('/data/:id').get(function(req, res){
@@ -34,12 +34,23 @@ dataRouter.route('/data/:id').get(function(req, res){
 
 	Data.findById(req.params.id,function(err, fdata){
 		
-			if(err){console.log(err);
-					res.status(500).send(err);
-			} 
+			if(err){console.log(err);res.status(500).send(err);} 
 			else res.json(fdata);
 	})
-});
+})
+ .put(function(req, res){
+ 	Data.findById(req.params.id,function(err, fdata){
+		
+			if(err){console.log(err);res.status(500).send(err);} 
+			else {
+				fdata.fname = req.body.fname;
+				fdata.lname = req.body.lname;
+				fdata.save();
+				res.json(fdata);
+			}
+	});
+
+ });
 
 	return dataRouter;
 };
