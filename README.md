@@ -16,11 +16,11 @@
 5. HTTP POST to add a record ```curl -X POST -H "Content-Type: application/json" -d '{
     "fname": "Walter",
     "lname": "White"
-  }' "http://localhost:8000/api/data"```
+  }' http://localhost:8000/api/data```
 6. HTTP PUT to update a record: ```curl -X PUT -H "Content-Type: application/json" -d '{
     "fname": "Jesse",
     "lname": "Pinkman"
-  }' "http://localhost:8000/api/data/56ddec148612d22406d7ee1d"```
+  }' http://localhost:8000/api/data/56ddec148612d22406d7ee1d```
 
 ##  Config notes:
 1.    
