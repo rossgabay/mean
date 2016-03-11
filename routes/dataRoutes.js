@@ -26,29 +26,35 @@ dataRouter.route('/data')
 	});
 });
 
-dataRouter.route('/data/:id').get(function(req, res){
-	
-	if(req.query.lname){
-		query.lname = req.query.lname;
-	}
-
+//injecting express middleware to avoid having to repeat the findById
+//query for each method that uses it
+dataRouter.use('/data/:id', function(req,res,next){
 	Data.findById(req.params.id,function(err, fdata){
 		
-			if(err){console.log(err);res.status(500).send(err);} 
-			else res.json(fdata);
-	})
-})
- .put(function(req, res){
- 	Data.findById(req.params.id,function(err, fdata){
-		
-			if(err){console.log(err);res.status(500).send(err);} 
+			if(err){
+				console.log(err);
+				res.status(500).send(err); // TODO : add graceful handling of CastError for invalid IDs: 
+										  //Cast to ObjectId failed for value "56e0a1275c3b9f14219b1a7" at path "_id"
+			} 
+			else if(fdata) {
+				req.fdata = fdata;
+				next();
+			}
 			else {
-				fdata.fname = req.body.fname;
-				fdata.lname = req.body.lname;
-				fdata.save();
-				res.json(fdata);
+				res.status(404).send('not found');	
 			}
 	});
+
+});
+
+dataRouter.route('/data/:id').get(function(req, res){
+	res.json(req.fdata); //req.fdata populated by middleware setup
+})
+ .put(function(req, res){
+				req.fdata.fname = req.body.fname; //req.fdata populated by middleware setup
+				req.fdata.lname = req.body.lname;
+				fdata.save();
+				res.json(req.fdata);
 
  });
 
