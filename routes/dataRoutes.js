@@ -89,6 +89,17 @@ dataRouter.route('/data/:id').get(function(req, res){
 
 		        });
 
+ })
+ .delete(function(req, res){
+	 	req.fdata.remove(function(err){
+			          if(err) {
+			            console.log(err);
+			            res.status(500).send(err);
+			          } else {
+			            res.status(204).send();
+			          }
+
+			        });
  });
  				
 	return dataRouter;
