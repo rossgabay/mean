@@ -5,33 +5,11 @@ var Data = require('../models/dataModel');
 var routes = function(){
 	
 var dataRouter = express.Router();
+var dataController = require('../controllers/dataController')(Data);
 
 dataRouter.route('/data')
-	.post(function(req, res){
-		var dt = new Data(req.body);
-		dt.save(function(err){
-					if(err) {
-						console.log(err);
-						res.status(500).send(err);
-					} else {
-						res.status(201).send(dt);
-					}
-
-				});	
-	})
-	.get(function(req, res){
-	var query = {};
-	if(req.query.lname){
-		query.lname = req.query.lname;
-	}
-
-	Data.find(query,function(err, fdata){
-		
-			if(err){console.log(err);
-					res.status(500).send(err);
-			} else res.json(fdata);
-	});
-});
+	.post(dataController.post)
+	.get(dataController.get);
 
 //injecting express middleware to avoid having to repeat the findById
 //query for each method that uses it
@@ -55,7 +33,14 @@ dataRouter.use('/data/:id', function(req,res,next){
 });
 
 dataRouter.route('/data/:id').get(function(req, res){
-	res.json(req.fdata); //req.fdata populated by middleware setup
+	 //req.fdata populated by middleware setup
+
+	var retFdata = req.fdata.toJSON();
+
+	retFdata.links = {};
+	retFdata.links.FilterByThisLname = 'http://' + req.headers.host + '/api/data/?lname=' + retFdata.lname;
+
+	res.json(retFdata);
 })
  .put(function(req, res){
  				if(req.body._id) delete req.body._id;
