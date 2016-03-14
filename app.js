@@ -11,14 +11,6 @@ db.once('open', function() {
   console.log('connected to mongo @' + connectString);
 });
 
-/*var Data = require('./models/dataModel');
-
-var drec = new Data({fname: 'ftest', lname: 'ltest'});
-drec.save(function(err, d){
-	if(err) console.error(err);
-	console.log('drec saved ok');
-});*/
-
 var app = express();
 var port = process.env.PORT || 3000;
 
