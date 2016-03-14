@@ -71,8 +71,26 @@ dataRouter.route('/data/:id').get(function(req, res){
 					}
 
 				});
- 	});
+ 	})
+ .patch(function(req, res){
+		 	if(req.body._id) delete req.body._id;
 
+		 	 for(var d in req.body){   		  //unlike PUT only updating provided field values
+		          req.fdata[d] = req.body[d]; //req.fdata populated by middleware setup
+		        }
+
+		     req.fdata.save(function(err){
+		          if(err) {
+		            console.log(err);
+		            res.status(500).send(err);
+		          } else {
+		            res.json(req.fdata);
+		          }
+
+		        });
+
+ });
+ 				
 	return dataRouter;
 };
 
