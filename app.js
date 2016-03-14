@@ -28,7 +28,10 @@ dataRouter = require("./routes/dataRoutes")();
 app.use("/api", dataRouter);
 
 app.get('/', function(req, res){
-	res.send('hi');
+	rtData = {
+		message: 'static message'
+	};
+	res.json(rtData);
 });
 
 app.listen(port, function(){
