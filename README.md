@@ -30,6 +30,6 @@
 
 
 ##  TODOs :
-- PUT and POST support to add and modify records
-- UI
+- DELETE to remove records
+- Angular UI
 - tests etc...
