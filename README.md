@@ -20,7 +20,10 @@
 6. HTTP PUT to update a record: ```curl -X PUT -H "Content-Type: application/json" -d '{
     "fname": "Jesse",
     "lname": "Pinkman"
-  }' http://localhost:8000/api/data/56ddec148612d22406d7ee1d```
+  }' http://localhost:8000/api/data/56ddec148612d22406d7ee1d``` - note that not providing a value of a field will wipe it out, use PATCH if the intent is to keep it intact
+7. HTTP PATCH to update a record ```curl -X PATCH -H "Content-Type: application/json" -d '{
+    "fname": "Newfname"
+  }' http://localhost:8000/api/data/56dd01610403aa8c15df5151``` - unlike PUT this will keep all the other record data
 
 ##  Config notes:
 1.    
