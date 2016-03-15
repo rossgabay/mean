@@ -26,8 +26,8 @@
   }' http://localhost:8000/api/data/56dd01610403aa8c15df5151``` - unlike PUT this will keep all the other record data intact if values for the fields are not provided
 8. HTTP DELETE to remove a record ```curl -X DELETE http://localhost:8000/api/data/56dd043b144275c42e832c88```
 
-##  Config notes:
-1.    
+##  General notes:
+1. For dealing with JSON output in the terminal I highly recommend using jq - https://stedolan.github.io/jq/
 
 
 ##  TODOs :
